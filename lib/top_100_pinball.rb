@@ -1,4 +1,4 @@
-require "top_100_pinball/version"
-require_relative './top_100_pinball/cli'
+require "top_100/version"
+require_relative 'top_100/cli'
 
 

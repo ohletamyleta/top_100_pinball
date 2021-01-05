@@ -3,15 +3,5 @@
 require "bundler/setup"
 require "top_100_pinball"
 
-# require "pry"
-# Pry.start
-
-require "irb"
-IRB.start
-
-
-
-
-
-
+Top100Pinball::CLI.new.call 
 
