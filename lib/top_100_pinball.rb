@@ -1,6 +1,4 @@
 require "top_100_pinball/version"
+require_relative './top_100_pinball/cli'
 
-module Top100Pinball
-  class Error < StandardError; end
-  # Your code goes here...
-end
+
