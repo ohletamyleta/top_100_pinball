@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 
 
-class Top100Pinball::Scraper
+class Top100::Scraper
 
     attr_accessor :title :rank :mfr :date 
 
