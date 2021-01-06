@@ -1,13 +1,20 @@
 class Top100Pinball::CLI 
 
+    OPTIONS = ["Game Title", "Ranking (1 - 100)", "Manufacturer", "Release Year", "Exit", "List All"]
+
     def call
         puts "Welcome to Pinside's Top 100 Pinball Games!"
-        puts "List of choices will be here"
-    
-      
+        puts "How would you like to search the list? (Please enter a number)."
+        choices     
     end
     
-    # def choices(user_input)
+    def choices
+        OPTIONS.each.with_index(1) do |option, number|
+            puts "#{number}) #{option}"
+    end
+    
+   # user_input = number_to_index(gets.chomp)
+
     #     if user_input == "1"
     #         #title method
     #     elsif user_input == "2"
