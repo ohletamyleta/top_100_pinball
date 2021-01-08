@@ -12,23 +12,17 @@ require_relative "./cli"
         @title = title
         @rank = rank 
         @mfr_date = mfr_date
-        @@all << self
+        @@all << self 
     end
 
     def self.all
         @@all
     end
 
-    # def self.new_from_list(game)
-    #     self.new()
-    #do i need this method?
+    #def find_by(attribute)
+    #     Top100.fetch(index -1)
+    # end
 
-
-
-
-
-
-    
  end
 
 

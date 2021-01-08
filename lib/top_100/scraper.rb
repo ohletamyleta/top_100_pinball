@@ -1,34 +1,36 @@
+#!/usr/bin/env ruby
+
 require 'nokogiri'
 require 'open-uri'
-
+require 'pry'
 
 class Top100Pinball::Scraper
+# class Scraper 
+
+attr_accessor :title, :rank, :mfr_date 
 
 
     def self.scrape_page
-        games = []
-    list = Nokogiri::HTML(open("https://pinside.com/pinball/top-100"))
+        games = {}
+    doc = Nokogiri::HTML(open("https://pinside.com/pinball/top-100"))
+    
+    list = doc.css("div.top-100-list")
+        
+    list.each do |item|
+     #   binding pry
+            title = item.css("div.top-100-entry-title").text.strip
+            rank = item.css("div.top-100-entry-num").text.strip
 
-    list.css("top-100-list").each do |game|
-            game_info = {}
-            game_info[:title] = list.css("top-100-entry-title").text
-            game_info[:rank] = list.css("top-100-entry-num")
-            game_info[:mfr_date] = list.css("top-100-entry-meta-left")
-            games << game_info
+            mfr_date = item.css("div.top-100-entry-meta-left").text.strip #returns "show/close"group prompts and all dates per game - 
+            #can use .first to narrow down dates OR just need to eliminate "show/close"
+
+            game = Top100Pinball::Top100.new(title, rank, mfr_date)
+        
         end
-    games
+
+    end
 end
 
 
 
-    # def title
-    #     @title ||= doc.css("top-100-entry-title")
-    # end
 
-    # def rank
-    #     @rank ||= doc.css("top-100-entry-num")
-    # end
-
-    # def mfr_date
-    #     @mfr_date ||= doc.css("top-100-entry-meta-left")
-    # end
