@@ -1,34 +1,38 @@
 class Top100Pinball::CLI 
 
-    OPTIONS = ["Game Title", "Ranking (1 - 100)", "Manufacturer", "Release Year", "Exit", "List All"]
+    OPTIONS = ["Game Title", "Ranking (1 - 100)", "Manufacturer and Release Year", "Exit", "List All"]
 
     def call
         puts "Welcome to Pinside's Top 100 Pinball Games!"
-        puts "How would you like to search the list? (Please enter a number)."
+        puts "-------------------------------------------"
+        puts "How do you want to play today? (enter a number)"
         OPTIONS.each.with_index(1) do |option, number|
             puts "#{number}) #{option}"
         end
+        choices
     end
     
     def choices
       
-   
-   # user_input = number_to_index(gets.chomp)
 
-    #     if user_input == "1"
-    #         #title method
+    puts "test!"
+
+         #if user_input == "1"
+            
     #     elsif user_input == "2"
-    #         #rank methosd
+    #         #rank method
     #     elsif user_input == "3"
-    #         #year method if using
+    #         #mfr & year method if using
     #     elsif user_input == "4"
-    #         #mfr method if using
-    #     elsif user_input == "5"
-    #         #exit method
+    #         puts "Have a great day, pinheads!"
+    #         exit
     #     else 
     #         #list all method
     # end
-#end
+    end
+
+
+
 
 
 
