@@ -1,6 +1,7 @@
 require "top_100/version"
 require_relative "./cli"
 
+
  class Top100Pinball::Top100
  
 
@@ -19,10 +20,12 @@ require_relative "./cli"
         @@all
     end
 
-    #def find_by(attribute)
-    #     Top100.fetch(index -1)
-    # end
+    # def self.find_title(title)
+    #     self.all(title)
+    # end 
 
- end
+
+
+  end
 
 

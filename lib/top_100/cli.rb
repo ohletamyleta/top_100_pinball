@@ -1,9 +1,13 @@
+require_relative "./scraper"
+
 class Top100Pinball::CLI 
     
     
-    OPTIONS = ["Game Title", "Ranking (1 - 100)", "Manufacturer and Release Year", "Exit"]
+    OPTIONS = ["Game Title", "Ranking (1 - 100)", "Manufacturer and Release Year", "List All 100", "Exit"]
 
     def call
+        Top100Pinball::Scraper.scrape_page
+
         puts "Welcome to Pinside's Top 100 Pinball Games!"
         puts "-------------------------------------------"
         
@@ -20,34 +24,59 @@ class Top100Pinball::CLI
       
         puts "How do you want to play today? (enter a number)"
           input = gets.strip
-       
+
         if input == "1"
-            puts "by_title"
+            by_title
             
         elsif input == "2"
-           puts "by_rank"
+           by_rank
 
         elsif input == "3"
             puts "by_mfr"
         
-        else input == "4"
+        elsif input == "4"
+            list_all
+
+        else input == "5"
             puts "Have a great day, pinheads!"
             exit
         end      
 
     end
 
-        # def self.by_title
-        #     puts "title search method here"
+        # # def by_title
+        # #   puts "Enter title of game:" 
+        # #   input = gets.chomp.downcase    
+        # #   Top100Pinball::Top100 SOMETHING COOL
+          
+        # #   puts "#{"Top100.title"}"
+          
         # end
 
-        # def self.by_rank
-        #     puts "rank method here"
+        # def by_rank
+        #     puts "Please enter a number from 1 - 100:"
+        #     input = gets.strip
+
+        #     if input <= Top100Pinball::Top100.all.each.with_index(1) && input > 0 
+        #         index = input-1
+
+        #     puts "Number #{input} is #{Top100Pinball::Top100.all[index].title}."
+        #     end
+
+            
         # end
 
-        # def self.by_mfr
+        # def by_mfr
         #     puts "mfr method here"
         # end
+
+        def list_all
+            Top100Pinball::Top100.all.each.with_index(1) do |list, index|
+                puts "#{index}. #{list.title}."
+            end
+        end
+
+
 
 end
 
