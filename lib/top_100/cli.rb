@@ -1,4 +1,5 @@
 require_relative "./scraper"
+require 'pry'
 
 class Top100Pinball::CLI 
     
@@ -44,16 +45,35 @@ class Top100Pinball::CLI
 
     end
 
-        # # def by_title
-        # #   puts "Enter title of game:" 
-        # #   input = gets.chomp.downcase    
-        # #   Top100Pinball::Top100 SOMETHING COOL
+        def by_title
+
+          puts "Enter title of game:" 
+          input = gets.chomp.capitalize
           
-        # #   puts "#{"Top100.title"}"
+          binding pry  
+
+        #   Top100Pinball::Top100.all do |game, info|
+        #         if input == :title
+        #         info.each do |title, name|
+               
+
+        #   names = Top100Pinball::Top100.all
           
-        # end
+        #   names.select{ |name| input.include?(names[:title.to_s]).map{ |name| name[:rank.to_s, :mfr_date.to_s]}}
+
+                  
+                end
+            end 
+        end
+    end
+       
+          
+  
+    choices
+    end
 
         # def by_rank
+           
         #     puts "Please enter a number from 1 - 100:"
         #     input = gets.strip
 
@@ -62,21 +82,27 @@ class Top100Pinball::CLI
 
         #     puts "Number #{input} is #{Top100Pinball::Top100.all[index].title}."
         #     end
+        # choices
 
             
         # end
 
         # def by_mfr
         #     puts "mfr method here"
+
+            #end
+            #choices
         # end
 
         def list_all
             Top100Pinball::Top100.all.each.with_index(1) do |list, index|
                 puts "#{index}. #{list.title}."
             end
+            choices
         end
 
 
 
 end
 
+  

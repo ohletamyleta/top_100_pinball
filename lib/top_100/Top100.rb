@@ -20,12 +20,7 @@ require_relative "./cli"
         @@all
     end
 
-    # def self.find_title(title)
-    #     self.all(title)
-    # end 
-
-
-
+  
   end
 
 

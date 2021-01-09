@@ -13,7 +13,7 @@ attr_accessor :title, :rank, :mfr_date
     
     doc = Nokogiri::HTML(open("https://pinside.com/pinball/top-100"))
 
-    # games = []
+  
     list = doc.css("div.top-100-list")
         
     list.each do |item|
