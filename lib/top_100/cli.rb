@@ -2,19 +2,28 @@ require_relative "./scraper"
 require 'pry'
 
 class Top100Pinball::CLI 
+     attr_accessor :full_games
     
     
-    OPTIONS = ["Game Title", "Ranking (1 - 100)", "Manufacturer and Release Year", "List All 100", "Exit"]
+    OPTIONS = ["Game List", "Game Descriptions", "More Information", "Exit"]
 
     def call
         Top100Pinball::Scraper.scrape_page
-
-        puts "Welcome to Pinside's Top 100 Pinball Games!"
-        puts "-------------------------------------------"
-        
-       choices
+        welcome
+        choices 
     end
-    
+        
+        
+    def welcome   
+        puts "Welcome to The Top 50 Pinball Games!"
+        puts "-------------------------------------------"
+        puts "How do you want to play today? (enter a number)"
+        puts "-------------------------------------------"
+    end
+
+
+
+
     def choices
         
         OPTIONS.each.with_index(1) do |option, number|
@@ -22,87 +31,106 @@ class Top100Pinball::CLI
         end
        
         input = nil
-      
-        puts "How do you want to play today? (enter a number)"
-          input = gets.strip
+
+        
+        input = gets.strip
 
         if input == "1"
-            by_title
+           full_games
+           list_all
             
         elsif input == "2"
-           by_rank
+            full_games
+            describe
 
         elsif input == "3"
-            puts "by_mfr"
-        
-        elsif input == "4"
-            list_all
+            full_games
+            link
 
-        else input == "5"
-            puts "Have a great day, pinheads!"
-            exit
-        end      
+        elsif input == "exit"
+           puts "Have a great day, pinheads!"
+           exit
+        else 
+            puts "TILT! Bad input, try again!"
+            choices 
+        end 
+
 
     end
 
-        def by_title
-
-          puts "Enter title of game:" 
-          input = gets.chomp.capitalize
-          
-          binding pry  
-
-        #   Top100Pinball::Top100.all do |game, info|
-        #         if input == :title
-        #         info.each do |title, name|
-               
-
-        #   names = Top100Pinball::Top100.all
-          
-        #   names.select{ |name| input.include?(names[:title.to_s]).map{ |name| name[:rank.to_s, :mfr_date.to_s]}}
-
-                  
-                end
-            end 
-        end
-    end
+    def list_all
        
-          
-  
-    choices
+        puts "Here They Are!"
+
+        Top100Pinball::Top100.all.each.with_index(1) do |game, index|
+        puts "#{index}. #{game.title}."
+        end
+        choices
     end
 
-        # def by_rank
+
+
+    def describe
+        # full_games 
+
+        puts "Enter number of game (1 - 50):" 
+        input = gets.strip
+
+          until input.to_i.between?(1,50) 
+                puts"TILT! Please try again."
+           input = gets.strip
+          end
+          if input != "exit"
+          index = input.to_i - 1
+          game = @all_games[index]
+          show_description(game)
            
-        #     puts "Please enter a number from 1 - 100:"
-        #     input = gets.strip
+        choices
+        end
 
-        #     if input <= Top100Pinball::Top100.all.each.with_index(1) && input > 0 
-        #         index = input-1
+    end
 
-        #     puts "Number #{input} is #{Top100Pinball::Top100.all[index].title}."
-        #     end
-        # choices
+        def link
+       
+            puts "Enter number of game (1 - 50):" 
+            input = gets.strip
 
-            
-        # end
+          until input.to_i.between?(1,50) 
+                puts"TILT! Please try again."
+           input = gets.strip
+          end
+          if input != "exit"
+          index = input.to_i - 1
+          game = @all_games[index]  
+         
+        show_weblink(game)   
+        choices
+        end
 
-        # def by_mfr
-        #     puts "mfr method here"
-
-            #end
-            #choices
-        # end
-
-        def list_all
-            Top100Pinball::Top100.all.each.with_index(1) do |list, index|
-                puts "#{index}. #{list.title}."
-            end
-            choices
         end
 
 
+        def full_games
+            @all_games = Top100Pinball::Top100.all.sort_by{|game| game.title}
+        end
 
+        def show_description(game)
+            puts "#{game.title}"
+            puts "#{game.description}"   
+        end
+
+        def show_weblink(game)
+            puts "#{game.title}"
+            puts "#{game.url}"
+        end
+
+ 
 end
 
-  
+      
+    # def make_games
+    #     games_array = Top100Pinball::Scraper.scrape_page
+    #     Top100.create_from_collection(games_array)
+    # end
+           
+   

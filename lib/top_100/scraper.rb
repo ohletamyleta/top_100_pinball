@@ -6,29 +6,23 @@ require 'pry'
 
 class Top100Pinball::Scraper
 
-attr_accessor :title, :rank, :mfr_date 
-
-
     def self.scrape_page
-    
-    doc = Nokogiri::HTML(open("https://pinside.com/pinball/top-100"))
-
-  
-    list = doc.css("div.top-100-list")
+   
+        doc = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
+ 
+        array_of_games = doc.css('div.content-area')
+   
         
-    list.each do |item|
-     #   binding pry
-            title = item.css("div.top-100-entry-title").text.strip
-            rank = item.css("div.top-100-entry-num").text.strip
-            mfr_date = item.css("div.top-100-entry-meta-left").text.strip #returns "show/close"group prompts and all dates per game - 
-            #can use .first to narrow down dates OR just need to eliminate "show/close"
+        array_of_games[0...50].each do |item, index|
+            attributes = {
+            title: item.css("h2").text,
+            description: item.css("p").text,
+            url: item.css("a.button").attr('href').value
+        }
 
-         Top100Pinball::Top100.new(title, rank, mfr_date)
-       
-        end
+        game = Top100Pinball::Top100.new(attributes)
+     end
+    end
 
     end
-end
-
-
 
