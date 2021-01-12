@@ -2,13 +2,13 @@ require_relative "./scraper"
 require 'pry'
 
 class Top100Pinball::CLI 
-     attr_accessor :full_games
-    
+     #attr_accessor :description, :url
+ 
     
     OPTIONS = ["Game List", "Game Descriptions", "More Information", "Exit"]
 
     def call
-        Top100Pinball::Scraper.scrape_page
+        Top100Pinball::Scraper.new.make_games
         welcome
         choices 
     end
@@ -36,18 +36,15 @@ class Top100Pinball::CLI
         input = gets.strip
 
         if input == "1"
-           full_games
            list_all
             
         elsif input == "2"
-            full_games
             describe
 
         elsif input == "3"
-            full_games
-            link
+             link
 
-        elsif input == "exit"
+        elsif input == "4"
            puts "Have a great day, pinheads!"
            exit
         else 
@@ -61,9 +58,9 @@ class Top100Pinball::CLI
     def list_all
        
         puts "Here They Are!"
-
-        Top100Pinball::Top100.all.each.with_index(1) do |game, index|
-        puts "#{index}. #{game.title}."
+        Top100Pinball::Top100.all.each.with_index do |game, index|
+            puts "#{index +1}, #{game}"   
+      
         end
         choices
     end
@@ -71,24 +68,30 @@ class Top100Pinball::CLI
 
 
     def describe
-        # full_games 
-
+      
         puts "Enter number of game (1 - 50):" 
+       
         input = gets.strip
 
-          until input.to_i.between?(1,50) 
+        until input.to_i.between?(1,50) || input == "exit"
                 puts"TILT! Please try again."
-           input = gets.strip
-          end
-          if input != "exit"
-          index = input.to_i - 1
-          game = @all_games[index]
-          show_description(game)
-           
-        choices
+                input = gets.strip
         end
+  
+        game = Top100Pinball::Top100.find(input.to_i)
+
+        print_description(game)
+
+
+        choices
+        # end
 
     end
+        def print_description(game)
+        puts "test desc"
+        puts "#{game.description}"
+        end
+
 
         def link
        
@@ -99,38 +102,23 @@ class Top100Pinball::CLI
                 puts"TILT! Please try again."
            input = gets.strip
           end
-          if input != "exit"
-          index = input.to_i - 1
-          game = @all_games[index]  
-         
-        show_weblink(game)   
+       
+        game = Top100Pinball::Top100.find(input.to_i)
+      
+
+        print_link(game)
         choices
         end
 
-        end
 
-
-        def full_games
-            @all_games = Top100Pinball::Top100.all.sort_by{|game| game.title}
-        end
-
-        def show_description(game)
-            puts "#{game.title}"
-            puts "#{game.description}"   
-        end
-
-        def show_weblink(game)
-            puts "#{game.title}"
+    def print_link(game)
+            puts "test link"
             puts "#{game.url}"
-        end
+    end
+
 
  
 end
 
-      
-    # def make_games
-    #     games_array = Top100Pinball::Scraper.scrape_page
-    #     Top100.create_from_collection(games_array)
-    # end
-           
-   
+  # .each.with_index(1) do |game, index|
+        # puts "#{index}. #{game}."

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "./lib/top_100/Top100"
+require "./lib/Top100"
 
 Top100Pinball::CLI.new.call 
 
