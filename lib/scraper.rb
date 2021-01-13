@@ -4,29 +4,51 @@ require 'pry'
 
 class Top100Pinball::Scraper
 
-    attr_accessor :name, :url, :game
+   # attr_accessor :name, :url, :game
     
-    def get_page   
-    index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
+    def make_games                    #self.scrape_games    
+        
+        index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
+        
+        games_array =  index_page.("div.row h2").children
+      
+        games_array.each_with_index do |game, index|
+            attributes = {
+                rank: index + 1,
+                url: index_page.search("a.button").attr('href').value
+                            }
+            game = Top100Pinball::Top50.new(attributes)
+            binding.pry  
+        end
+
     end
 
+end
+
+
+
+
+    # def get_page   
+    # index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
+    # end
+
   
-    def scrape_names
+    # def scrape_names
         
-        name = self.get_page.css("div.row h2").children
-    end
+    #     name = self.get_page.css("div.row h2").children
+    # end
    
-    def make_games
+    # def make_games
         
-        scrape_names.each do |game|
-        Top100Pinball::Top50.new_from_list(game)   
-        end
-    end
+    #     scrape_names.each do |game|
+    #     Top100Pinball::Top50.new_from_list(game)   
+    #     end
+    # end
 
     
             
 
-end
+# end
 
 # games = []
 
