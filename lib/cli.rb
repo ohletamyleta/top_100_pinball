@@ -3,14 +3,14 @@
         require_relative "./scraper"
         require 'pry'
         
-        class Top100Pinball::CLI 
+    class Top100Pinball::CLI 
              #attr_accessor :description, :url
          
             
-            OPTIONS = ["Game List", "Game Descriptions", "More Information", "Exit"]
+            OPTIONS = ["List All Games", "More Information", "Exit"]
         
             def call
-                Top100Pinball::Scraper.new.make_games
+                Top100Pinball::Scraper.new.make_games      
                 welcome
                 choices 
             end
@@ -30,10 +30,7 @@
                 
                 OPTIONS.each.with_index(1) do |option, number|
                     puts "#{number}) #{option}"
-                end
-               
-                input = nil
-        
+                end        
                 
                 input = gets.strip
         
@@ -41,12 +38,9 @@
                    list_all
                     
                 elsif input == "2"
-                    describe
+                    link
         
                 elsif input == "3"
-                     link
-        
-                elsif input == "4"
                    puts "Have a great day, pinheads!"
                    exit
                 else 
@@ -60,7 +54,7 @@
             def list_all
                
                 puts "Here They Are!"
-                Top100Pinball::Top100.all.each.with_index do |game|
+                Top100Pinball::Top50.all.each.with_index do |game|
                     #binding.pry
                     puts "#{game.name}"   
                 
@@ -70,38 +64,12 @@
                 puts ""
                 choices
             end
-        #{index +1}, , index
+ 
         
         
-            def describe
-              
-                puts "Enter number of game (1 - 50):" 
+            def link
                
-                input = gets.strip
-        
-                until input.to_i.between?(1,50) || input == "exit"
-                        puts"TILT! Please try again."
-                        input = gets.strip
-                end
-          
-                game = Top100Pinball::Top100.find(input.to_i)
-        
-                print_description(game)
-        
-        
-                choices
-               
-            end
-                
-            def print_description(game)
-                puts "test desc"
-                puts "#{game.description}"
-                end
-        
-        
-                def link
-               
-                    puts "Enter number of game (1 - 50):" 
+                    puts "Enter the ranking of the game you're looking for (1 - 50):" 
                     input = gets.strip
         
                   until input.to_i.between?(1,50) 
@@ -109,22 +77,18 @@
                    input = gets.strip
                   end
                
-                game = Top100Pinball::Top100.find(input.to_i)
-              
-        
-                print_link(game)
+                game = Top100Pinball::Top50.find(input.to_i)
+        #    binding.pry
+
+                puts "#{game.url}"
+            
                 choices
-                end
-        
-        
-            def print_link(game)
-                    puts "test link"
-                    puts "#{game.url}"
             end
+            
         
         
          
-        end 
+    end 
 
         # require_relative "./scraper"
         # require 'pry'
@@ -251,3 +215,5 @@
         
           # .each.with_index(1) do |game, index|
                 # puts "#{index}. #{game}."  
+
+     
