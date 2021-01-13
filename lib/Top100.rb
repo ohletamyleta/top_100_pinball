@@ -18,24 +18,22 @@ require_relative "./scraper"
            # binding.pry
     end
 
-    def initialize(name, url=nil)
+    def initialize(name)         
         @name = name
-        @url = url
+       # @url = url
 
         @@all << self
 
     end
 
-  
+    def self.find(input)
+        self.all[input-1]
+      end
 
     def self.all
         @@all
     end
-    
-    def self.find(id)
-        self.all[id-1]
-    end
-    
+
 
 
 end

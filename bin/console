@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "top_100_pinball"
+require "top_100_vg"
 
 # require "pry"
 # Pry.start

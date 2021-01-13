@@ -3,84 +3,50 @@ require 'open-uri'
 require 'pry'
 
 class Top100Pinball::Scraper
+    attr_accessor :title, :rank, :url, :year, :trivia
 
-   # attr_accessor :name, :url, :game
-    
-    def make_games                    #self.scrape_games    
-        
-        index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
-        
-        games_array =  index_page.("div.row h2").children
-      
-        games_array.each_with_index do |game, index|
-            attributes = {
-                rank: index + 1,
-                url: index_page.search("a.button").attr('href').value
-                            }
-            game = Top100Pinball::Top50.new(attributes)
-            binding.pry  
-        end
+    def self.scrape_games
+   
+   @doc = Nokogiri::HTML(open("https://www.ign.com/lists/top-100-games/100"))
+   @doc.search("article.item").each do |video_games|
 
-    end
+        game = Top100Pinball::Top100.new
+        binding.pry
+        game.title = video_games.search("div.item-heading a").text,
+        game.rank = video_games.search("div.badge-number")
 
+    #binding.pry
+   end
 end
-
-
-
-
-    # def get_page   
-    # index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
-    # end
-
-  
-    # def scrape_names
-        
-    #     name = self.get_page.css("div.row h2").children
-    # end
+end
    
-    # def make_games
-        
-    #     scrape_names.each do |game|
-    #     Top100Pinball::Top50.new_from_list(game)   
-    #     end
-    # end
+   
+   
+   
+   
+   
+   
+   
+        #     index_page = Nokogiri::HTML(open("https://www.ign.com/lists/top-100-games/100"))
+
+    #    array_of_games = index_page.css("div.badge-number")
+      
+
+        # array_of_games.each_with_index do |game, index|
+        #     # attributes = {
+        #         title = game.css("div.item-heading a").text,
+        #         binding.pry
+        #         url = game.css("div.item-heading a").attributes['href'].value,
+        #         year = game.css("span.item-label-value").text,
+        #         trivia = game.css("li.item-highlight").text
+        #                 #  }
+
+        #     video_game = Top100Pinball::Top100.new(title, url, year, trivia)
+#         # end
+#     end 
+# end 
 
     
-            
-
-# end
-
-# games = []
-
-# games << scrape_site
-# binding.pry
-# games
- 
-# def get_page   
-#     index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
-# end
-
-# def self.scrape_site
-#      get_page
-#     index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
-
-#     game = self.new
-#     game.name = index_page.search("div.row h2").children.text
-#     game.url = index_page.search("a.button").attr('href').value
-  
-
-
-#     game 
-#     #binding.pry
-# end
-   #  def scrape_url
-    #      url = self.get_page.css("a.button").attr('href').value
-    #     binding.pry
-    #  end
-
-
-
-   
    
    
    
