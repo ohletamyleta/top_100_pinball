@@ -4,13 +4,15 @@
         require 'pry'
         
     class Top100Pinball::CLI 
-             #attr_accessor :description, :url
+
          
             
-            # OPTIONS = ["List All Games", "Search By Ranking", "Exit"]
+             OPTIONS = ["List All Games", "More Information", "Exit"]
         
             def call
-                Top100Pinball::Scraper.scrape_games 
+                Top100Pinball::Scraper.new.make_games
+                Top100Pinball::Scraper.new.make_info
+
                 welcome
                 choices 
             end
@@ -35,10 +37,10 @@
                 input = gets.strip
         
                 if input == "1"
-                   list_all
+                  list_all
                     
                 elsif input == "2"
-                    link
+                    more_info
         
                 elsif input == "3"
                    puts "Have a great day, pinheads!"
@@ -67,23 +69,24 @@
  
         
         
-            def link
+        #     def more_info
                
-                    puts "Enter the ranking of the game you're looking for (1 - 50):" 
-                    input = gets.strip
+        #             puts "Enter the ranking of the game you're looking for (1 - 50):" 
+        #             input = gets.strip
         
-                  until input.to_i.between?(1,50) 
-                        puts"TILT! Please try again."
-                   input = gets.strip
-                  end
+        #           until input.to_i.between?(1,50) 
+        #                 puts"TILT! Please try again."
+        #            input = gets.strip
+        #           end
                
-                game = Top100Pinball::Top50.find(input.to_i)
-        #    binding.pry
+        #         # a method to return the correct game description goes here
 
-                puts "#{game}"
+        # #    binding.pry
+
+        #         puts "#{game}"
             
-                choices
-            end
+        #         choices
+        #     end
             
         
         

@@ -9,7 +9,7 @@ require_relative "./scraper"
  class Top100Pinball::Top50
  
 
-    attr_accessor  :url, :name
+    attr_accessor  :desc, :name
 
     @@all = []
 
@@ -20,7 +20,7 @@ require_relative "./scraper"
 
     def initialize(name)         
         @name = name
-       # @url = url
+        @desc = desc
 
         @@all << self
 
@@ -28,7 +28,7 @@ require_relative "./scraper"
 
     def self.find(input)
         self.all[input-1]
-      end
+    end
 
     def self.all
         @@all
