@@ -9,27 +9,28 @@ require_relative "./scraper"
  class Top100Pinball::Top50
  
 
-    attr_accessor  :title, :link, :name
+    attr_accessor  :link, :name
 
 
     @@all = []
 
-    def self.new_from_list(game)
-        self.new(game)
-    end
-
-    def initialize(name)         
-         @name = name
-
+ 
+    def initialize(att_hash)
       
-
+         att_hash.each do |key, value|
+           self.send("#{key}=", value)
+         end
+         self.save
+       end
+     
+       def save
         @@all << self
 
     end
 
-    def self.find(input)
-        self.all[input-1]
-    end
+    # def self.find(input)
+    #     self.all[input-1]
+    # end
 
     def self.all
         @@all
@@ -39,8 +40,4 @@ require_relative "./scraper"
 
 end
 
-
-
-  # @title = title
-        # @link = link
 

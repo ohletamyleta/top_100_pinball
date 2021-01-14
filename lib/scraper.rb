@@ -11,26 +11,39 @@ class Top100Pinball::Scraper
       end
 
 
-  def scrape_names
-       name = self.get_page.css("div.row h2").children
-  
-    end
+
    
-    def make_games
-        scrape_names.each do |game|
-        Top100Pinball::Top50.new_from_list(game) 
-        end
+def make_games
+  game_nodes = get_page.css(".col-inner").select do |node|
+    !node.css('h2').empty?
+  end
+  games = game_nodes.map do |game_node|
 
-    end
-  end 
-  
-
+    game_hash = {name: game_node.css("h2").text, link: game_node.css('p').text}
+    Top100Pinball::Top50.new(game_hash)            #_from_list(game) 
+  end
+# binding.pry
+end
+end
 
  
-# def scrape_games
-#       self.get_page.css("div.col-inner") 
-#      #binding.pry
-#   end
+
+
+
+
+
+
+#   def make_games
+  #       scrape_names.each do |game|
+  #       Top100Pinball::Top50.new_from_list(game) 
+  #       end
+
+  #   end     game_node.css('a').attr('href').value
+  # end 
+  
+
+
+
    
 #     def make_games
 #        scrape_games.each do |item|    # self.
@@ -92,11 +105,6 @@ class Top100Pinball::Scraper
     #  end
     #  binding.pry
   
-
-
-
-
-
 
 
     

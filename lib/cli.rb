@@ -5,6 +5,7 @@
         
     class Top100Pinball::CLI 
 
+            attr_accessor :game_list
          
             
              OPTIONS = ["List All Games", "More Information", "Exit"]
@@ -38,11 +39,10 @@
                   list_all
                     
                 elsif input == "2"
-                  puts "working on this!"
-                    #more_info
+                    more_info
         
                 elsif input == "3"
-                   puts "Have a great day, pinheads!"
+                   puts "Have a great day, pinhead!"
                    exit
                 else 
                     puts "TILT! Bad input, try again!"
@@ -65,26 +65,37 @@
                 choices
             end
  
-        
-        
-        #     def more_info
-               
-        #             puts "Enter the ranking of the game you're looking for (1 - 50):" 
-        #             input = gets.strip
-        
-        #           until input.to_i.between?(1,50) 
-        #                 puts"TILT! Please try again."
-        #            input = gets.strip
-        #           end
-               
-        #         # a method to return the correct game description goes here
+            def game_list
+                @game_list = Top100Pinball::Top50.all
 
-        # #    binding.pry
-
-        #         puts "#{game}"
+            end
+        
+        
+            def more_info
+               
+                    puts "Enter the ranking of the game you're looking for (1 - 50):" 
+                    input = gets.strip
+        
+                  until input.to_i.between?(1,50) 
+                        puts"TILT! Please try again."
+                   input = gets.strip
+                  end
+               
+                  game_list
+               
+                  index = input.to_i - 1
+                  game = @game_list[index]
+                 # binding.pry
+                    puts ""
+                    puts "#{game.name}"
+                    puts ""
+                    puts "#{game.link}"
+                    puts""
+                    puts ""
+                    
             
-        #         choices
-        #     end
+                choices
+            end
             
         
         
