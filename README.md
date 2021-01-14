@@ -1,4 +1,4 @@
-# Top50Pinball
+# Top100Pinball
 
 A CLI gem to return the current top 50 pinball games as rated by The Pinball Company, and links to more information about each game.  
 
