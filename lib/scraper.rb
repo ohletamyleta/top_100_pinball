@@ -5,49 +5,43 @@ require 'pry'
 require_relative './Top50.rb'
 
 class Top100Pinball::Scraper
-      
-  def get_page   
-    index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
-  end
 
- 
-def scrape_games
-      self.get_page.css(".col-inner") 
-     binding.pry
-  end
-   
-    def make_games
-       scrape_games.each do |item|    # self.
-          game = Top100Pinball::Top50.new
-    
-          #game.title = item.css("div.row h2").children 
-          binding.pry
-          game.link = item.css('a').attr('href').value
-        end
-      
+  def get_page   
+        index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
       end
 
 
-    # # 
-end 
+  def scrape_names
+       name = self.get_page.css("div.row h2").children
+  
+    end
+   
+    def make_games
+        scrape_names.each do |game|
+        Top100Pinball::Top50.new_from_list(game) 
+        end
 
-
-
-# ("div.col-inner a").attr('href').value
-# ("div.row h2").children 
-
-
-
-
- #
-
-
-
-
+    end
+  end 
   
 
 
-
+ 
+# def scrape_games
+#       self.get_page.css("div.col-inner") 
+#      #binding.pry
+#   end
+   
+#     def make_games
+#        scrape_games.each do |item|    # self.
+#           game = Top100Pinball::Top50.new
+    
+#           game.title = item.css("h2").children 
+#           binding.pry
+#           game.link = item.css('a.button').attr('href').value
+#         end
+      
+#       end
 
 
 
@@ -56,8 +50,14 @@ end
 
 
 
-  #THESE 2 METHODS TOGETHER WORK TO RETURN A LIST OF ALL 50 GAMES (H2 ELEMENTS)
+  #THESE 3 METHODS TOGETHER WORK TO RETURN A LIST OF ALL 50 GAMES (H2 ELEMENTS)
   #WORKING ON AN ARRAY/HASH METHOD TO USE HREF AS A VALUE FOR EACH GAME KEY
+
+
+#   def get_page   
+#     index_page = Nokogiri::HTML(open("https://www.thepinballcompany.com/top-50-pinball-list/"))
+#   #binding.pry
+#   end
 
   # def scrape_names
     #    name = self.get_page.css("div.row h2").children
@@ -70,6 +70,10 @@ end
     #     end
 
     # end
+
+
+
+
 
     # def make_games(index_url)
     #   games = []

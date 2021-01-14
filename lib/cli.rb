@@ -10,10 +10,7 @@
              OPTIONS = ["List All Games", "More Information", "Exit"]
         
             def call
-                #index_url = "https://www.thepinballcompany.com/top-50-pinball-list/"
-                Top100Pinball::Scraper.new.make_games   #(index_url)
-                # Top100Pinball::Scraper.new.make_info
-
+                Top100Pinball::Scraper.new.make_games   
                 welcome
                 choices 
             end
