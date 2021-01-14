@@ -9,7 +9,8 @@ require_relative "./scraper"
  class Top100Pinball::Top50
  
 
-    attr_accessor  :desc, :name
+    attr_accessor  :title, :link  #:name, :desc
+
 
     @@all = []
 
@@ -18,9 +19,11 @@ require_relative "./scraper"
            # binding.pry
     end
 
-    def initialize(name)         
-        @name = name
-        @desc = desc
+    def initialize         # (name)         
+        # @name = name
+        # @desc = desc
+        @title = title
+        @link = link
 
         @@all << self
 

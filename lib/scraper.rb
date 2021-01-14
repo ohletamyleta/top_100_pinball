@@ -2,6 +2,8 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 
+require_relative './Top50.rb'
+
 class Top100Pinball::Scraper
       
   def get_page   
@@ -9,23 +11,30 @@ class Top100Pinball::Scraper
   end
 
  
-def scrape_names
-       name = self.get_page.css("div.row h2").children  
-      #  binding.pry
+def scrape_games
+      self.get_page.css(".col-inner") 
+     binding.pry
   end
    
     def make_games
-        scrape_names.each do |game|
-        Top100Pinball::Top50.new_from_list(game) 
+       scrape_games.each do |item|    # self.
+          game = Top100Pinball::Top50.new
+    
+          #game.title = item.css("div.row h2").children 
+          binding.pry
+          game.link = item.css('a').attr('href').value
         end
+      
+      end
 
-    end
+
+    # # 
 end 
 
 
 
-("div.col-inner a").attr('href').value
-
+# ("div.col-inner a").attr('href').value
+# ("div.row h2").children 
 
 
 
