@@ -1,8 +1,10 @@
 # Top100Pinball
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/top_100_pinball`. To experiment with that code, run `bin/console` for an interactive prompt.
+A CLI gem to return the current top 50 pinball games as rated by The Pinball Company, and links to more information about each game.  
 
-TODO: Delete this and the text above, and describe your gem
+Flowchart of original plan for this gem's structure is here: https://drive.google.com/file/d/1TREIMY19FsVDe1_zQbQ6C5GmSK1VBv95/view?usp=sharing
+
+I have not published the gem as of yet, because I plan to add additional functionality at a later date.
 
 ## Installation
 
