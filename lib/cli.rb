@@ -10,8 +10,9 @@
              OPTIONS = ["List All Games", "More Information", "Exit"]
         
             def call
-                Top100Pinball::Scraper.new.make_games
-                Top100Pinball::Scraper.new.make_info
+                #index_url = "https://www.thepinballcompany.com/top-50-pinball-list/"
+                Top100Pinball::Scraper.new.make_games   #(index_url)
+                # Top100Pinball::Scraper.new.make_info
 
                 welcome
                 choices 
@@ -40,7 +41,8 @@
                   list_all
                     
                 elsif input == "2"
-                    more_info
+                  puts "working on this!"
+                    #more_info
         
                 elsif input == "3"
                    puts "Have a great day, pinheads!"
@@ -50,17 +52,16 @@
                     choices 
                 end 
         
-        
+                choices
             end
         
+           
             def list_all
                
                 puts "Here They Are!"
                 Top100Pinball::Top50.all.each.with_index do |game|
                     #binding.pry
                     puts "#{game.name}"   
-                
-              
                 end
                 puts ""
                 puts ""

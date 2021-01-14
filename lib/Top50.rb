@@ -39,41 +39,32 @@ require_relative "./scraper"
 end
 
     
+  # class Student
 
-# require_relative "./version"
-# require_relative "./cli"
-
-
-#  class Top100Pinball::Top100
- 
-
-#     attr_accessor :title, :description, :url 
-#     # , :id
-
-#     @@all = []
-
-#     def self.new_from_list(game)
-#         self.new(
-#             game.css("div.col-inner h2").text
-#             )
-#     end
-
-#     def initialize(att_hash)
-#         att_hash.each do |key, value|
-#             self.send("#{key}=, value")
-#         end
-#             self.save
-#     end
-
-#     def save
-#         @@all << self
-        
-#     end
-
-#     def self.all
-#         @@all
-#     end
-    
-   
-# end
+  #   attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url
+  
+  #   @@all = []
+  
+  #   def initialize(student_hash)
+  #     student_hash.each {|k, v| self.send(("#{k}="), v)}
+  #     @@all << self
+  #   end
+  
+  #   def self.create_from_collection(students_array)
+  #     students_array.each do |student_hash|
+  #       self.new(student_hash)
+  #     end
+  #   end
+  
+  #   def add_student_attributes(attributes_hash)
+  #     attributes_hash.each do |k, v|
+  #       self.send(("#{k}="), v)
+  #     end
+  #     self
+  #   end
+  
+  #   def self.all
+  #     @@all
+  #   end
+  # end
 
