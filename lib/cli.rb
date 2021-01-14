@@ -57,7 +57,7 @@
                
                 puts "Here They Are!"
                 Top100Pinball::Top50.all.each.with_index do |game|
-                    #binding.pry
+ 
                     puts "#{game.name}"   
                 end
                 puts ""
@@ -85,7 +85,7 @@
                
                   index = input.to_i - 1
                   game = @game_list[index]
-                 # binding.pry
+
                     puts ""
                     puts "#{game.name}"
                     puts ""

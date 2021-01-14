@@ -28,10 +28,7 @@ require_relative "./scraper"
 
     end
 
-    # def self.find(input)
-    #     self.all[input-1]
-    # end
-
+ 
     def self.all
         @@all
     end
