@@ -8,13 +8,10 @@ require_relative "./scraper"
 
  class Top100Pinball::Top50
  
-
     attr_accessor  :link, :name
-
 
     @@all = []
 
- 
     def initialize(att_hash)
       
          att_hash.each do |key, value|
@@ -23,18 +20,14 @@ require_relative "./scraper"
          self.save
        end
      
-       def save
+    def save
         @@all << self
-
     end
-
  
     def self.all
         @@all
     end
 
-
-
-end
+  end
 
 

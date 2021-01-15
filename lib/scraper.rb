@@ -20,7 +20,7 @@ def make_games
   games = game_nodes.map do |game_node|
 
     game_hash = {name: game_node.css("h2").text, link: game_node.css('p').text}
-    Top100Pinball::Top50.new(game_hash)          \
+    Top100Pinball::Top50.new(game_hash)          
   end
 
 end

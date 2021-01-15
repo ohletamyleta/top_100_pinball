@@ -1,7 +1,5 @@
-
-
-        require_relative "./scraper"
-        require 'pry'
+    require_relative "./scraper"
+    require 'pry'
         
     class Top100Pinball::CLI 
 
@@ -14,18 +12,14 @@
                 Top100Pinball::Scraper.new.make_games   
                 welcome
                 choices 
-            end
-                
+            end            
                 
             def welcome   
                 puts "Welcome to The Top 50 Pinball Games!"
                 puts "-------------------------------------------"
                 puts "How do you want to play today? (enter a number)"
                 puts "-------------------------------------------"
-            end
-        
-        
-        
+            end             
         
             def choices
                 
@@ -47,8 +41,8 @@
                 else 
                     puts "TILT! Bad input, try again!"
                     choices 
-                end 
-        
+                end        
+                
                 choices
             end
         
@@ -57,8 +51,7 @@
                
                 puts "Here They Are!"
                 Top100Pinball::Top50.all.each.with_index do |game|
- 
-                    puts "#{game.name}"   
+                puts "#{game.name}"   
                 end
                 puts ""
                 puts ""
@@ -67,39 +60,33 @@
  
             def game_list
                 @game_list = Top100Pinball::Top50.all
-
             end
-        
         
             def more_info
                
-                    puts "Enter the ranking of the game you're looking for (1 - 50):" 
+                puts "Enter the ranking of the game you're looking for (1 - 50):" 
                     input = gets.strip
         
-                  until input.to_i.between?(1,50) 
+                until input.to_i.between?(1,50) 
                         puts"TILT! Please try again."
                    input = gets.strip
-                  end
+                end
                
-                  game_list
+                game_list
                
-                  index = input.to_i - 1
-                  game = @game_list[index]
+                index = input.to_i - 1
+                game = @game_list[index]
 
                     puts ""
                     puts "#{game.name}"
                     puts ""
                     puts "#{game.link}"
                     puts""
-                    puts ""
-                    
+                    puts ""    
             
                 choices
             end
             
-        
-        
-         
-    end 
+end 
 
      
