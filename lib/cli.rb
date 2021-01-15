@@ -66,11 +66,6 @@
                
                 puts "Enter the ranking of the game you're looking for (1 - 50):" 
                     input = gets.strip
-        
-                until input.to_i.between?(1,50) 
-                        puts"TILT! Please try again."
-                   input = gets.strip
-                end
                
                 game_list
                
